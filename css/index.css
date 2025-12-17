@@ -8,9 +8,9 @@
     justify-content: center;
     align-items: center;
     background-color: var(--bg-body);
+    overflow: hidden;
 }
 
-/* El contenedor de partículas */
 #tsparticles {
     position: absolute;
     top: 0;
@@ -58,10 +58,15 @@
     font-weight: bold;
     text-decoration: none;
     transition: 0.3s;
+    background-image: var(--gradient-primary);
+    background-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
 }
 
 .btn-hero:hover {
     background-color: var(--color-primary-hover);
+    background-image: none;
+    transition: 0.3s;
     box-shadow: var(--shadow-glow-primary);
 }
 
