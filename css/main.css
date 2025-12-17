@@ -35,6 +35,10 @@
     margin: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--bg-body);
     font-family: 'Inter', sans-serif;
@@ -55,6 +59,7 @@ nav {
     top: 0;
     z-index: 100;
     box-shadow: var(--shadow-md);
+    margin-bottom: 50px;
 }
 
 #logo-nav p {
@@ -83,7 +88,7 @@ nav {
     content: '';
     position: absolute;
     width: 0; 
-    height: 2px; 
+    height: 3px; 
     bottom: 0;
     left: 0;
     background-color: var(--color-primary);
@@ -105,4 +110,10 @@ nav {
 #secciones a:hover {
     color: var(--text-main);
     transition: ease-in-out all 0.3s;
+}
+
+section {
+    margin-left: 15%;
+    margin-right: 15%;
+    padding-bottom: 50px;
 }

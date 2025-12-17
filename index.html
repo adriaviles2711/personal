@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Hero setcion -->
     <header id="hero-section">
         
         <div id="tsparticles"></div>
@@ -23,86 +24,37 @@
         </div>
     </header>
 
+    <!-- Barra de navegación -->
     <nav>
         <div id="logo-nav">
             <p>Adrián Avilés</p>
         </div>
         <div id="secciones">
             <ul>
-                <a href="" id="active"><li>Inicio</li></a>
-                <a href=""><li>Sobre mi</li></a>
+                <a href="#hero-section" id="active"><li>Inicio</li></a>
+                <a href="#sobremi"><li>Sobre mi</li></a>
                 <a href=""><li>Proyectos</li></a>
                 <a href=""><li>Contacto</li></a>
             </ul>
         </div>
     </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <!-- Sobre Mi -->
+    <section id="sobremi">
+        <h1>Sobre Mí</h1>
+        <br>
+        <div id="sobremi-txt">
+            <div id="sobremi-der">
+                <p>Prueba prueba prueba</p>
+            </div>
+            <div id="sobremi-izq">
+                <?xml version="1.0" ?><svg id="sobremi-icono" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title/><g id="about"><path d="M16,16A7,7,0,1,0,9,9,7,7,0,0,0,16,16ZM16,4a5,5,0,1,1-5,5A5,5,0,0,1,16,4Z"/><path d="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z"/></g></svg>
+            </div>
+        </div>    
+    </section>
 
-    <script>
-        tsParticles.load("tsparticles", {
-            fpsLimit: 60,
-            background: {
-                color: "transparent"
-            },
-            particles: {
-                number: {
-                    value: 150,
-                    density: { enable: true, area: 800 }
-                },
-                color: {
-                    value: "#ffffff"
-                },
-                shape: {
-                    type: "edge"
-                },
-                opacity: {
-                    value: 0.5
-                },
-                size: {
-                    value: 3
-                },
-                links: {
-                    enable: true,
-                    distance: 150,
-                    color: "#ffffff",
-                    opacity: 0.5,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 1,
-                    outModes: { default: "bounce" }
-                }
-            },
-            interactivity: {
-                detectsOn: "window",
-                events: {
-                    onHover: {
-                        enable: true,
-                        mode: ["grab", "bubble"]
-                    }
-                },
-                modes: {
-                    grab: {
-                        distance: 200,
-                        links: {
-                            opacity: 1,
-                            color: "#FF7B00"
-                        }
-                    },
-                    bubble: {
-                        distance: 200,
-                        size: 7,
-                        color: {
-                            value: "#FF7B00"
-                        },
-                        opacity: 1
-                    }
-                }
-            },
-            detectRetina: true
-        });
-    </script>
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script src="js/tsParticles.js"></script>
 </body>
 </html>

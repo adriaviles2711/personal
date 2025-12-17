@@ -53,10 +53,39 @@
     display: inline-block;
     padding: 10px 30px;
     border: 1px solid var(--color-primary);
+    border-radius: 10px;
     color: var(--text-main);
+    font-weight: bold;
     text-decoration: none;
     transition: 0.3s;
 }
+
 .btn-hero:hover {
-    background-color: var(--color-primary-subtle);
+    background-color: var(--color-primary-hover);
+    box-shadow: var(--shadow-glow-primary);
+}
+
+/* Sección sobre mi */
+#sobremi {
+    color: var(--text-main);
+}
+
+#sobremi-txt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#sobremi h1 {
+    font-size: 40px;
+    border-bottom: 4px solid var(--color-primary);
+    padding-bottom: 5px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#sobremi-icono {
+    width: 200px;
+    height: 200px;
+    fill: var(--color-primary);
 }
