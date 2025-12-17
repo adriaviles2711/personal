@@ -19,8 +19,8 @@
         <div class="hero-content">
             <p class="saludo">Mi nombre es</p>
             <h1>Adrián <span class="resaltado">Avilés</span></h1>
-            <p class="descripcion">Desarrollador Full Stack</p>
-            <a href="#proyectos" class="btn-hero">Ver mi trabajo ↓</a>
+            <p class="descripcion"> Técnico de Sistemas Microinformáticos y Redes <br>Desarrollador Full Stack en Formación</p>
+            <a href="#sobremi" class="button">Ver mi trabajo ↓</a>
         </div>
     </header>
 
@@ -40,21 +40,84 @@
     </nav>
 
     <!-- Sobre Mi -->
-    <section id="sobremi">
-        <h1>Sobre Mí</h1>
-        <br>
-        <div id="sobremi-txt">
-            <div id="sobremi-der">
-                <p>Prueba prueba prueba</p>
+    <section class="seccion" id="sobremi">
+        <div class="titulo-seccion">
+            <h1>Sobre Mí</h1>
+        </div>
+        
+        <div class="sobremi-container">
+            <div class="sobremi-bio">
+                <h3>Técnico de Sistemas Microinformáticos y Redes<br>
+                Desarrollador Full Stack en Formación</h3>
+                <p>
+                    ¡Buenas! Soy Adrián Avilés. Tengo 23 años y desde siempre me ha apasionado la tecnología y la programación.
+                    Actualmente estoy estudiando <span class="resaltado-texto">Desarrollo de Aplicaciones Multiplataforma</span> y estoy graduado en 
+                    <span class="resaltado-texto">Técnico de Sistemas Microinformáticos y Redes</span>.
+                </p>
+                <p>
+                    Me considero una persona proactiva, siempre buscando optimizar mi rendimiento y aprender nuevas tecnologías.
+                    Mi primer proyecto web fue para <span class="resaltado-texto">Sigonsa S.L.</span> trabajando para 
+                    <span class="resaltado-texto">MC Empresarial</span> donde además fui técnico de sistemas y auxiliar administrativo durante 6 meses.
+                </p>
+                <p>
+                    Aprendo rápido y me adapto bien a los cambios, por lo que siempre estoy buscando nuevos retos personales que me permitan hacer
+                    crecer mis conocimientos y aprender nuevas ideas de diseño.
+                </p>
+                <p>
+                    Para saber más sobre mi carrera profesional, la cual acaba de empezar, no dudes en descargar mi CV.
+                </p>
+                
+                <div class="bio-stats">
+                    <div>
+                        <span class="stat-number">08+</span>
+                        <span class="stat-label">Proyectos Realizados</span>
+                    </div>
+                    <div>
+                        <span class="stat-number">03</span>
+                        <span class="stat-label">Años Exp.</span>
+                    </div>
+                </div>
+                <a href="#sobremi" id="btn-cv" class="button">Descargar CV</a>
             </div>
-            <div id="sobremi-izq">
-                <?xml version="1.0" ?><svg id="sobremi-icono" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title/><g id="about"><path d="M16,16A7,7,0,1,0,9,9,7,7,0,0,0,16,16ZM16,4a5,5,0,1,1-5,5A5,5,0,0,1,16,4Z"/><path d="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z"/></g></svg>
+
+            <div class="sobremi-skills">
+                <h3>Mis Habilidades</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">HTML5</div>
+                    <div class="skill-card">CSS3</div>
+                    <div class="skill-card">JavaScript</div>
+                    <div class="skill-card">Java</div>
+                    <div class="skill-card">Python</div>
+                    <div class="skill-card">MySQL</div>
+                    <div class="skill-card">Firebase</div>
+
+                    <div class="skill-card">VS Code</div>
+                    <div class="skill-card">IntelliJ IDEA</div>
+                    <div class="skill-card">FlutterFlow</div>
+                    <div class="skill-card">Android Studio</div>
+
+                    <div class="skill-card">Figma</div>
+                    <div class="skill-card">Git / Github</div>
+                    <div class="skill-card">Trello / Jira</div>
+                </div>
+            </div>
+
+            <!-- Error descarga CV -->
+              <div id="modalCV" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h3>¡CV en construcción!</h3>
+                    <p>¡Estoy renovando mi currículum! Estará listo muy pronto. Por ahora, la mejor forma de conocerme es viendo mis proyectos en la sección de abajo.</p>
+                    <br>
+                    <button id="btn-ir-proyectos" class="button">Ver Proyectos</button>
+                </div>
             </div>
         </div>    
     </section>
 
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script src="js/errorCV.js"></script>
     <script src="js/tsParticles.js"></script>
 </body>
 </html>

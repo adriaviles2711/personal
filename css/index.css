@@ -49,21 +49,22 @@
     margin-bottom: 30px;
 }
 
-.btn-hero {
+.button {
     display: inline-block;
     padding: 10px 30px;
     border: 1px solid var(--color-primary);
     border-radius: 10px;
-    color: var(--text-main);
+    color: var(--on-primary);
     font-weight: bold;
     text-decoration: none;
     transition: 0.3s;
     background-image: var(--gradient-primary);
     background-color: var(--color-primary);
     box-shadow: var(--shadow-md);
+    cursor: pointer;
 }
 
-.btn-hero:hover {
+.button:hover {
     background-color: var(--color-primary-hover);
     background-image: none;
     transition: 0.3s;
@@ -71,26 +72,172 @@
 }
 
 /* Sección sobre mi */
-#sobremi {
+.seccion {
     color: var(--text-main);
 }
 
-#sobremi-txt {
+/* Centrado del título */
+.titulo-seccion {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    margin-bottom: 50px;
 }
 
-#sobremi h1 {
+.seccion h1 {
     font-size: 40px;
     border-bottom: 4px solid var(--color-primary);
     padding-bottom: 5px;
-    width: fit-content;
-    margin: 0 auto;
+    display: inline-block;
 }
 
-#sobremi-icono {
-    width: 200px;
-    height: 200px;
-    fill: var(--color-primary);
+
+.sobremi-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+/* Columna Izquierda: Bio */
+.sobremi-bio {
+    flex: 1;
+}
+
+.sobremi-bio h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--text-main);
+}
+
+.sobremi-bio p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.resaltado-texto {
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+/* Estadísticas */
+.bio-stats {
+    display: flex;
+    gap: 40px;
+    margin: 30px 0;
+    padding: 20px 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.bio-stats div {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Columna Derecha: Skills */
+.sobremi-skills {
+    flex: 1;
+}
+
+.sobremi-skills h3 {
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+}
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.skill-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--color-border);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.skill-card:hover {
+    border-color: var(--color-primary);
+    color: var(--text-main);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(255, 123, 0, 0.15);
+}
+
+/* --- Estilos para la ventana emergente --- */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: var(--bg-surface);
+    margin: 15% auto;
+    padding: 30px;
+    border: 1px solid var(--color-primary);
+    width: 90%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    text-align: center;
+    position: relative;
+    color: var(--text-main);
+    animation: fadeIn 0.4s;
+}
+
+.modal-content h3 {
+    color: var(--color-primary);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.modal-content p {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.close-btn {
+    color: var(--text-muted);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-btn:hover {
+    color: var(--color-primary);
+    transition: ease-in-out all 0.3s;
+}
+
+/* Animación suave de entrada */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
 }
