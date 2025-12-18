@@ -8,7 +8,7 @@
 
     /* Fondos (Dark Mode) */
     --bg-body: #121212;
-    --bg-surface: #1E1E1ECC;
+    --bg-surface: #1E1E1EF2;
     
     /* Bordes */
     --color-border: #333333;
@@ -112,8 +112,55 @@ nav {
     transition: ease-in-out all 0.3s;
 }
 
+/* Estilos generales de secciones */
 section {
     margin-left: 15%;
     margin-right: 15%;
     padding-bottom: 50px;
+}
+
+/* Estilos para botones */
+/* Botón principal */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+    color: var(--on-primary);
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+    background-image: var(--gradient-primary);
+    background-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--color-primary-hover);
+    background-image: none;
+    transition: 0.3s;
+    box-shadow: var(--shadow-glow-primary);
+}
+
+/* Botón secundario */
+.button-sec {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid var(--text-muted);
+    border-radius: 5px;
+    color: var(--text-muted);
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+    background-color: var(--bg-body);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+}
+
+.button-sec:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    transition: 0.3s;
+    box-shadow: var(--shadow-glow-primary);
 }
