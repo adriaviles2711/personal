@@ -1,31 +1,29 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const sections = document.querySelectorAll("section, header");
+document.addEventListener("scroll", () => {
+    const sections = document.querySelectorAll("header, section");
     const navLinks = document.querySelectorAll("#secciones ul a");
 
-    // Configuración del observador
-    const observerOptions = {
-        root: null,
-        rootMargin: '-70px 0px 0px 0px',
-        threshold: 0.50
-    };
+    let currentSectionId = "";
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const currentId = entry.target.getAttribute("id");
+    sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        // Detectamos si el scroll ha pasado el inicio de la sección (menos un margen de 100px)
+        if (window.pageYOffset >= sectionTop - 100) {
+            currentSectionId = section.getAttribute("id");
+        }
+    });
 
-                navLinks.forEach(link => {
-                    link.removeAttribute("id");
-                    
-                    if (link.getAttribute("href") === `#${currentId}`) {
-                        link.setAttribute("id", "active");
-                    }
-                });
-            }
-        });
-    }, observerOptions);
+    // Refuerzo para el final de la página: si tocamos fondo, activar la última sección
+    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 2) {
+        currentSectionId = "proyectos"; 
+    }
 
-    sections.forEach(section => {
-        observer.observe(section);
+    navLinks.forEach((link) => {
+        link.removeAttribute("id");
+        // Comparamos el href con el ID de la sección actual
+        if (link.getAttribute("href") === `#${currentSectionId}`) {
+            link.setAttribute("id", "active");
+        }
     });
 });

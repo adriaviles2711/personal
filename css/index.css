@@ -342,3 +342,64 @@
     transform: translateY(-2px);
     box-shadow: var(--shadow-glow-primary);
 }
+
+/* --- MEDIA QUERIES ESPECÍFICAS (index.css) --- */
+@media (max-width: 992px) {
+    
+    .hero-content h1 { 
+        font-size: 3rem;
+    }
+    
+    .sobremi-container {
+        flex-direction: column; /* Bio y Skills uno sobre otro */
+        gap: 40px;
+    }
+
+    .proyectos-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-content h1 { 
+        font-size: 2.2rem;
+    }
+    .hero-content .descripcion { 
+        font-size: 1.2rem;
+    }
+
+    .bio-stats {
+        flex-direction: column;
+        align-items: center; 
+        text-align: center;
+        gap: 25px;
+    }
+
+    .bio-stats div {
+        align-items: center;
+    }
+
+    /* Centrar el título de "Mis Habilidades" */
+    .sobremi-skills h3 {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .skills-grid {
+        justify-content: center;
+    }
+
+    .proyectos-grid {
+        grid-template-columns: 1fr; /* 1 columna en móviles */
+    }
+
+    .seccion h1 { 
+        font-size: 30px;
+    }
+
+    #btn-cv {
+        display: block;
+        width: fit-content;
+        margin: 20px auto 0 auto;
+    }
+}

@@ -29,8 +29,21 @@
         <div id="logo-nav">
             <p>Adrián Avilés</p>
         </div>
+
+        <!-- Menú hamburguesa -->
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
         <div id="secciones">
-            <ul>
+            <div class="menu-close" id="mobile-menu-close">
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <ul class="nav-list">
                 <a href="#hero-section" id="active"><li>Inicio</li></a>
                 <a href="#sobremi"><li>Sobre mi</li></a>
                 <a href="#proyectos"><li>Proyectos</li></a>
@@ -38,6 +51,7 @@
             </ul>
         </div>
     </nav>
+    <div class="nav-overlay" id="overlay"></div> <!-- Para oscurecer el fondo -->
 
     <!-- Sobre Mi -->
     <section class="seccion" id="sobremi">
@@ -202,9 +216,10 @@
     </section>
 
     <!-- JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script> <!-- Librería tsParticles -->
     <script src="js/errorCV.js"></script>
     <script src="js/tsParticles.js"></script>
     <script src="js/scrollActive.js"></script>
+    <script src="js/mobileMenu.js"></script>
 </body>
 </html>
