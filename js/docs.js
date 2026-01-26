@@ -2,6 +2,7 @@
 const githubUser = 'adriaviles2711';
 const githubRepo = 'personal';
 const docsFolder = 'docs';
+const mainBranch = 'main'; // Asegúrate de que tu rama principal se llame 'main' (o cámbialo a 'master')
 const MODO_LOCAL = false;
 
 // Archivos para modo local (necesario porque no podemos listar carpetas en local)
@@ -83,31 +84,46 @@ function openLightbox(src) {
 // --- LÓGICA DE CARGA DE DOCUMENTACIÓN ---
 async function initDocs() {
     try {
+        const params = new URLSearchParams(window.location.search);
+        const viewParam = params.get('view'); // Ejemplo: 'DashboardServidores/DOCUMENTACION_TECNICA'
+
+        // CASO 1: Si hay un parámetro 'view' en la URL (Carga directa)
+        if (viewParam) {
+            let directUrl;
+            
+            if (MODO_LOCAL) {
+                // En local buscamos en el array manual
+                const localFile = archivosLocales.find(f => f.download_url.includes(viewParam));
+                if (localFile) directUrl = localFile.download_url;
+                else throw new Error("Archivo local no configurado en la lista 'archivosLocales'");
+            } else {
+                // En producción construimos la URL raw de GitHub
+                // Estructura: https://raw.githubusercontent.com/USUARIO/REPO/RAMA/CARPETA_DOCS/RUTA_ARCHIVO.md
+                directUrl = `https://raw.githubusercontent.com/${githubUser}/${githubRepo}/${mainBranch}/${docsFolder}/${viewParam}.md`;
+            }
+
+            await loadMdContent(directUrl);
+            return;
+        }
+
+        // CASO 2: Si NO hay parámetro, cargamos la lista por defecto de la raíz
         let data;
-        
-        // Obtener lista de archivos
         if (MODO_LOCAL) {
             data = archivosLocales;
         } else {
             const response = await fetch(apiUrl);
-            if (!response.ok) throw new Error("Error GitHub API");
+            if (!response.ok) throw new Error("Error GitHub API (Límite excedido o ruta incorrecta)");
             data = await response.json();
         }
 
-        const mdFiles = data.filter(item => item.name.endsWith('.md'));
+        // Filtramos solo archivos .md
+        const mdFiles = Array.isArray(data) ? data.filter(item => item.name.endsWith('.md')) : [];
         
-        // Determinar qué archivo cargar (por URL o el primero por defecto)
-        const params = new URLSearchParams(window.location.search);
-        const fileToLoad = params.get('view') 
-            ? params.get('view') + '.md' 
-            : mdFiles[0].name;
-
-        const targetFile = mdFiles.find(f => f.name === fileToLoad) || mdFiles[0];
-
-        if (targetFile) {
-            loadMdContent(targetFile.download_url);
+        if (mdFiles.length > 0) {
+            // Cargar el primero por defecto
+            loadMdContent(mdFiles[0].download_url);
         } else {
-            contentContainer.innerHTML = '<h3>No se encontró documentación.</h3>';
+            contentContainer.innerHTML = '<h3>No se encontró documentación en la raíz.</h3>';
         }
 
     } catch (error) {
@@ -121,31 +137,26 @@ async function loadMdContent(url) {
 
     try {
         const response = await fetch(url);
-        if (!response.ok) throw new Error("Error de descarga");
+        if (!response.ok) throw new Error(`Error al descargar el archivo (${response.status})`);
         const mdText = await response.text();
         
         // 1. Renderizar HTML desde Markdown
         contentContainer.innerHTML = marked.parse(mdText);
         contentContainer.style.opacity = '1';
 
-        // --- 🔴 NUEVO CÓDIGO: ARREGLAR RUTAS DE IMÁGENES ---
+        // --- ARREGLAR RUTAS DE IMÁGENES RELATIVAS ---
         // Obtenemos la carpeta base del archivo MD actual
-        // Ejemplo url: "docs/DashboardServidor/DOCUMENTACION.md"
-        // Resultado base: "docs/DashboardServidor/"
         const basePath = url.substring(0, url.lastIndexOf('/') + 1);
 
         const rawImages = contentContainer.querySelectorAll('img');
         rawImages.forEach(img => {
             const src = img.getAttribute('src');
-            
             // Si la ruta es relativa (no empieza por http ni por /)
             if (src && !src.startsWith('http') && !src.startsWith('/')) {
-                // Quitamos el "./" del principio si existe y concatenamos la base
                 const cleanSrc = src.replace(/^\.\//, '');
                 img.src = basePath + cleanSrc;
             }
         });
-        // --- FIN NUEVO CÓDIGO ---
 
         // 2. Colorear bloques de código
         document.querySelectorAll('pre code').forEach((el) => {
@@ -153,19 +164,14 @@ async function loadMdContent(url) {
         });
 
         // 3. PROCESAR IMÁGENES (Estilo Tarjeta + Click)
-        // Nota: Volvemos a seleccionar las imágenes por si acaso, 
-        // aunque ahora ya tienen la ruta correcta.
         const images = contentContainer.querySelectorAll('img');
         images.forEach(img => {
-            // Envolver la imagen en <figure class="image-card">
             const wrapper = document.createElement('figure');
             wrapper.className = 'image-card';
             
-            // Insertar wrapper antes de la imagen y mover la imagen dentro
             img.parentNode.insertBefore(wrapper, img);
             wrapper.appendChild(img);
             
-            // Evento Click para abrir el visor
             wrapper.addEventListener('click', (e) => {
                 e.stopPropagation();
                 openLightbox(img.src);
@@ -177,7 +183,8 @@ async function loadMdContent(url) {
 
     } catch (error) {
         console.error(error);
-        contentContainer.innerHTML = `<h2>Error al cargar el documento</h2>`;
+        contentContainer.innerHTML = `<h2>Error al cargar el documento</h2><p>${error.message}</p>`;
+        contentContainer.style.opacity = '1';
     }
 }
 
