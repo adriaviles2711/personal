@@ -1,0 +1,454 @@
+/* Estructura principal*/
+.docs-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr; 
+    min-height: calc(100vh - 70px);
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: var(--bg-body);
+}
+
+/* =========================================
+   BARRA LATERAL (SIDEBAR) MEJORADA
+========================================= */
+
+.docs-sidebar {
+    background: var(--bg-surface);
+    /* Quitamos el borde sólido y usamos un degradado sutil al final si se desea, 
+       pero mejor dejarlo limpio para el efecto flotante */
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px 15px 30px 10px; 
+    position: sticky;
+    top: 70px; 
+    height: calc(100vh - 70px); /* Ajuste exacto a la altura visible */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+}
+
+/* Título pequeño "DOCUMENTACIÓN" */
+.sidebar-header h3 {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 25px;
+    padding-left: 15px;
+    opacity: 0.7;
+}
+
+/* Menú de navegación */
+#docs-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+/* Eliminamos la línea gris global anterior para hacer algo más dinámico */
+#docs-menu::before { content: none; }
+
+/* --- ESTILO BASE DE LOS ENLACES --- */
+.doc-submenu li {
+    position: relative;
+    margin-bottom: 4px;
+}
+
+.doc-submenu li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    padding: 8px 15px;
+    border-radius: 8px; /* Bordes redondeados */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-left: 0; /* Quitamos el borde antiguo */
+}
+
+/* Hover suave: Desplaza un poco a la derecha y aclara el fondo */
+.doc-submenu li a:hover {
+    color: var(--text-main);
+    background-color: rgba(255, 255, 255, 0.03);
+    transform: translateX(5px);
+}
+
+/* --- ESTILOS ESPECÍFICOS PARA H2 (Títulos principales) --- */
+.doc-submenu li.h2 {
+    margin-top: 15px; /* Separación entre secciones grandes */
+}
+
+.doc-submenu li.h2 a {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+/* Icono/Marcador para H2 */
+.doc-submenu li.h2 a::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-border);
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+/* --- ESTILOS ESPECÍFICOS PARA H3 (Subtítulos) --- */
+.doc-submenu li.h3 a {
+    font-size: 0.85rem;
+    padding-left: 32px; /* Más indentado */
+    color: var(--text-muted);
+    opacity: 0.8;
+}
+
+/* Marcador línea vertical pequeña para H3 */
+.doc-submenu li.h3 a::before {
+    content: '';
+    position: absolute;
+    left: 18px; /* Alineado con el marcador del padre */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 4px; /* Pequeño guion */
+    background-color: var(--color-border);
+    transition: 0.3s;
+}
+
+/* --- ESTADO ACTIVO (La Magia) --- */
+
+/* 1. Fondo con degradado naranja muy sutil (Glass effect) */
+.doc-submenu li.active > a {
+    color: var(--color-primary);
+    background: linear-gradient(90deg, rgba(255, 123, 0, 0.1) 0%, transparent 100%);
+    transform: translateX(5px); /* Mantener el desplazamiento */
+}
+
+/* 2. El marcador del H2 se enciende y estira */
+.doc-submenu li.h2.active a::before {
+    background-color: var(--color-primary);
+    box-shadow: 0 0 10px var(--color-primary); /* GLOW */
+    transform: scale(1.2);
+}
+
+/* 3. El marcador del H3 se convierte en una línea sólida */
+.doc-submenu li.h3.active a::before {
+    height: 14px; /* Crece verticalmente */
+    background-color: var(--color-primary);
+    box-shadow: 0 0 8px var(--color-primary); /* GLOW */
+}
+
+/* Zona de contenido */
+.docs-content {
+    padding: 30px 30px;
+    min-width: 0;
+}
+
+.markdown-body {
+    color: var(--text-main);
+    line-height: 1.6;
+    font-size: 16px;
+    max-width: 900px; 
+}
+
+/* Estilo de los títulos dentro del contenido */
+/* h1: El título principal del documento */
+.markdown-body h1 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-primary);
+    display: inline-block;
+}
+
+/* h2: Títulos de secciones */
+.markdown-body h2 {
+    font-size: 1.6rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.markdown-body h2::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-primary);
+    border-radius: 2px;
+}
+
+/* h3: Subtítulos */
+.markdown-body h3 {
+    font-size: 1.25rem;
+    margin-top: 20px;
+    color: var(--color-primary-hover);
+    font-weight: bold;
+}
+
+/* Párrafos y listas */
+.markdown-body p, 
+.markdown-body ul, 
+.markdown-body ol {
+    color: var(--text-main);
+}
+
+/* Los puntos de las listas */
+.markdown-body li::marker {
+    color: var(--color-primary);
+}
+
+.markdown-body ol,
+.markdown-body ul {
+    margin-left: 30px;
+    margin-top: 5px;
+}
+
+.markdown-body ul ul,
+.markdown-body ol ul,
+.markdown-body ul ol,
+.markdown-body ol ol {
+    margin-left: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* Bloques de código */
+.markdown-body pre {
+    background-color: var(--bg-body) !important; 
+    border: 1px solid var(--color-border);
+    border-radius: 8px; 
+    padding: 15px;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Código en linea */
+.markdown-body p code, 
+.markdown-body li code {
+    background-color: rgba(255, 123, 0, 0.1); 
+    color: var(--color-primary-hover);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9em;
+}
+
+/* Citas */
+.markdown-body blockquote {
+    margin: 15px;
+    border-left: 3px solid var(--color-primary);
+    background: linear-gradient(90deg, var(--color-primary-subtle) 0%, transparent 100%);
+    padding: 20px 15px;
+    font-style: italic;
+    color: var(--text-muted); 
+}
+
+/* Tabla */
+.markdown-body table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 20px 0;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+}
+
+/* Encabezados de la tabla */
+.markdown-body th {
+    background-color: var(--bg-surface);
+    color: var(--color-primary);
+    font-weight: bold;
+    padding: 12px 15px;
+    text-transform: uppercase;
+}
+
+/* Celdas normales */
+.markdown-body td {
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* Enlaces */
+.markdown-body a {
+    color: var(--color-primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+/* Al pasar el ratón por un enlace */
+.markdown-body a:hover {
+    border-bottom: 1px solid var(--color-primary);
+}
+
+.markdown-body hr {
+    margin: 30px 0;
+}
+
+/* =========================================
+   GALERÍA DE IMÁGENES "GLASS & BLUR"
+========================================= */
+
+/* El contenedor (la tarjeta) */
+.image-card {
+    position: relative;
+    display: inline-block;
+    width: 260px;           
+    height: 170px;          
+    margin: 20px 20px 20px 0;
+    border-radius: 16px;    /* Bordes muy suaves */
+    overflow: hidden;       
+    
+    /* Sombra profunda para dar relieve 3D */
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
+    background-color: var(--bg-surface);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    
+    /* CURSOR DE CLICK (MANO) */
+    cursor: pointer; 
+    
+    /* Transiciones suaves */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* La imagen dentro */
+.image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.4s ease; /* Añadimos transición al filtro */
+}
+
+/* --- INTERACCIÓN (HOVER) --- */
+
+/* 1. Al pasar el ratón, la tarjeta flota hacia arriba */
+.image-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5); /* Sombra más fuerte */
+    border-color: var(--color-primary); /* Borde sutil del color de tu marca */
+}
+
+/* 2. La imagen se agranda Y SE DIFUMINA (BLUR) */
+.image-card:hover img {
+    transform: scale(1.15); /* Zoom más agresivo */
+    filter: blur(4px) brightness(0.7); /* DIFUMINADO + Oscurecido */
+}
+
+/* 3. El Botón "Fantasma" que aparece en el centro */
+.image-card::after {
+    content: '⤢ Ampliar'; /* Icono + Texto para ser intuitivo */
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: white;
+    letter-spacing: 0.5px;
+    
+    /* Posicionamiento */
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -40%); /* Empieza un poco más abajo */
+    
+    /* Estilo del botón */
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1); /* Fondo casi transparente */
+    backdrop-filter: blur(4px); /* Efecto cristal en el propio botón */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    
+    opacity: 0; /* Invisible al inicio */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+/* Animación de entrada del botón */
+.image-card:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -50%); /* Se coloca en el centro exacto */
+}
+
+/* =========================================
+   VISOR A PANTALLA COMPLETA (LIGHTBOX)
+   Este bloque hace que la imagen flote en el centro
+========================================= */
+
+#zoom-overlay {
+    /* OBLIGATORIO: Fija el visor encima de todo */
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* CAPAS Y FONDO */
+    z-index: 99999; /* Muy alto para tapar el menú y todo lo demás */
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo negro semitransparente */
+    backdrop-filter: blur(10px); /* EL EFECTO DIFUMINADO QUE PEDISTE */
+    
+    /* CENTRADO PERFECTO */
+    display: none; /* JS lo cambiará a 'flex' */
+    justify-content: center;
+    align-items: center;
+    
+    /* Animación de entrada */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Estado activo (cuando JS lo abre) */
+#zoom-overlay.active {
+    display: flex !important; /* Usamos flex para centrar la imagen */
+    opacity: 1;
+}
+
+/* La imagen grande dentro del visor */
+#zoom-image {
+    max-width: 90vw; /* Máximo 90% del ancho de la pantalla */
+    max-height: 90vh; /* Máximo 90% del alto */
+    object-fit: contain; /* Asegura que la imagen se vea entera */
+    
+    border-radius: 8px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5); /* Sombra elegante */
+    
+    /* Pequeño efecto de zoom al aparecer */
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#zoom-overlay.active #zoom-image {
+    transform: scale(1);
+}
+
+/* Diseño móvil */
+@media (max-width: 900px) {
+    /* Cambiamos la rejilla a una sola columna */
+    .docs-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .docs-sidebar {
+        display: none; 
+    }
+
+    .docs-content {
+        padding: 20px; 
+    }
+
+    .markdown-body h1 {
+        font-size: 1.8rem;
+    }
+    
+    .markdown-body h2 {
+        font-size: 1.4rem;
+    }
+}

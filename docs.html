@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación - Adrián Avilés</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/docs.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav>
+        <div id="logo-nav">
+            <p>Adrián Avilés</p>
+        </div>
+
+        <!-- Menú hamburguesa -->
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <div id="secciones">
+            <div class="menu-close" id="mobile-menu-close">
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <ul class="nav-list">
+                <a href="index.html" id="active"><li>Inicio</li></a>
+                <a href="#sobremi"><li>Sobre mi</li></a>
+                <a href="#proyectos"><li>Proyectos</li></a>
+                <a href="#contacto"><li>Contacto</li></a>
+            </ul>
+        </div>
+    </nav>
+    <div class="nav-overlay" id="overlay"></div>
+
+    <div class="docs-layout">
+        <aside class="docs-sidebar">
+            <div class="sidebar-header">
+                <h3>Documentación</h3>
+            </div>
+            <ul id="docs-menu">
+            </ul>
+        </aside>
+
+        <main class="docs-content">
+            <div id="markdown-render" class="markdown-body">
+                <div class="loader">Cargando documentación...</div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <p class="footer-logo">Adrián <span>Avilés</span></p>
+                <p class="footer-tagline">Desarrollador Full Stack en Formación<br>Técnico de Sistemas Microinformáticos</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="#hero-section">Inicio</a></li>
+                    <li><a href="#sobremi">Sobre mí</a></li>
+                    <li><a href="#proyectos">Proyectos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-social">
+                <h4>Contacto Directo</h4>
+                <p>adriavilessanchez@gmail.com</p>
+                <div class="social-icons">
+                    <a href="#" class="social-link">LinkedIn</a>
+                    <a href="#" class="social-link">GitHub</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Adrián Avilés. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/mobileMenu.js"></script> <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    
+    <script src="js/docs.js"></script>
+</body>
+</html>
