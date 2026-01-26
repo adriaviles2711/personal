@@ -1,0 +1,239 @@
+/* ===================================
+   Responsive Design
+   =================================== */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+
+    .servers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .commands-container {
+        grid-template-columns: 1fr;
+    }
+
+    .carousel-card {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-prev {
+        left: var(--spacing-sm);
+    }
+
+    .carousel-next {
+        right: var(--spacing-sm);
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+    :root {
+        --font-size-3xl: 1.5rem;
+        --font-size-2xl: 1.25rem;
+        --font-size-xl: 1.125rem;
+    }
+
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+
+    .main {
+        padding: var(--spacing-lg) 0;
+    }
+
+    .header-content {
+        padding: var(--spacing-md) 0;
+    }
+
+    .logo h1 {
+        font-size: var(--font-size-lg);
+    }
+
+    .header-actions {
+        gap: var(--spacing-sm);
+    }
+
+    .connection-status {
+        display: none;
+    }
+
+    .section-title {
+        font-size: var(--font-size-xl);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .servers-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .server-card {
+        padding: var(--spacing-md);
+    }
+
+    .server-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .carousel {
+        padding: var(--spacing-md);
+    }
+
+    .carousel-card {
+        padding: var(--spacing-sm);
+    }
+
+    .carousel-stat-value {
+        font-size: var(--font-size-2xl);
+    }
+
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .command-panel,
+    .command-history-panel {
+        padding: var(--spacing-md);
+    }
+
+    .command-header {
+        flex-direction: column;
+    }
+
+    .command-input-group {
+        flex-direction: column;
+    }
+
+    .command-input-group .btn-primary {
+        width: 100%;
+    }
+
+    .command-output {
+        min-height: 200px;
+        max-height: 300px;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: var(--spacing-md);
+    }
+
+    .modal-header {
+        padding: var(--spacing-md);
+    }
+
+    .modal-body {
+        padding: var(--spacing-md);
+    }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+    .logo-icon {
+        display: none;
+    }
+
+    .btn-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .server-actions {
+        flex-direction: column;
+    }
+
+    .server-actions button {
+        width: 100%;
+    }
+
+    .carousel-card {
+        gap: var(--spacing-sm);
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 900px) and (orientation: landscape) {
+    .main {
+        padding: var(--spacing-md) 0;
+    }
+
+    .carousel {
+        padding: var(--spacing-md);
+    }
+
+    .command-output {
+        max-height: 200px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-success,
+    .btn-danger {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .btn-icon {
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .server-card:hover {
+        transform: none;
+    }
+
+    .carousel-item {
+        touch-action: pan-x;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    body {
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body::before {
+        display: none;
+    }
+
+    .header,
+    .footer,
+    .server-actions,
+    .command-panel,
+    .carousel-btn {
+        display: none;
+    }
+
+    .server-card,
+    .stat-card {
+        break-inside: avoid;
+    }
+}

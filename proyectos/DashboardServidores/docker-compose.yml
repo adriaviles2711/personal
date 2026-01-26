@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  # Dashboard service
+  dashboard:
+    build: .
+    container_name: dashboard
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - WS_PORT=3001
+      - SSH_USER=monitor
+      - SSH_PASSWORD=monitor123
+      - SERVER1_HOST=server1
+      - SERVER2_HOST=server2
+      - SERVER3_HOST=server3
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - monitoring-network
+    depends_on:
+      - server1
+      - server2
+      - server3
+    restart: unless-stopped
+
+  # Monitored Server 1 (Web Server)
+  server1:
+    build: ./monitored-server
+    container_name: server1
+    hostname: server1
+    environment:
+      - SERVER_NAME=WebServer01
+      - SERVER_ROLE=web
+    networks:
+      - monitoring-network
+    restart: unless-stopped
+
+  # Monitored Server 2 (Database Server)
+  server2:
+    build: ./monitored-server
+    container_name: server2
+    hostname: server2
+    environment:
+      - SERVER_NAME=DatabaseServer
+      - SERVER_ROLE=database
+    networks:
+      - monitoring-network
+    restart: unless-stopped
+
+  # Monitored Server 3 (App Server)
+  server3:
+    build: ./monitored-server
+    container_name: server3
+    hostname: server3
+    environment:
+      - SERVER_NAME=AppServer
+      - SERVER_ROLE=app
+    networks:
+      - monitoring-network
+    restart: unless-stopped
+
+networks:
+  monitoring-network:
+    driver: bridge

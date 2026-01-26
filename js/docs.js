@@ -6,7 +6,7 @@ const MODO_LOCAL = false;
 
 // Archivos para modo local (necesario porque no podemos listar carpetas en local)
 const archivosLocales = [
-    { name: "ejemplo.md", download_url: "docs/ejemplo.md" },
+    { name: "DOCUMENTACION_TECNICA.md", download_url: "docs/DashboardServidor/DOCUMENTACION_TECNICA.md" },
 ];
 
 const apiUrl = `https://api.github.com/repos/${githubUser}/${githubRepo}/contents/${docsFolder}`;
@@ -128,12 +128,33 @@ async function loadMdContent(url) {
         contentContainer.innerHTML = marked.parse(mdText);
         contentContainer.style.opacity = '1';
 
+        // --- 🔴 NUEVO CÓDIGO: ARREGLAR RUTAS DE IMÁGENES ---
+        // Obtenemos la carpeta base del archivo MD actual
+        // Ejemplo url: "docs/DashboardServidor/DOCUMENTACION.md"
+        // Resultado base: "docs/DashboardServidor/"
+        const basePath = url.substring(0, url.lastIndexOf('/') + 1);
+
+        const rawImages = contentContainer.querySelectorAll('img');
+        rawImages.forEach(img => {
+            const src = img.getAttribute('src');
+            
+            // Si la ruta es relativa (no empieza por http ni por /)
+            if (src && !src.startsWith('http') && !src.startsWith('/')) {
+                // Quitamos el "./" del principio si existe y concatenamos la base
+                const cleanSrc = src.replace(/^\.\//, '');
+                img.src = basePath + cleanSrc;
+            }
+        });
+        // --- FIN NUEVO CÓDIGO ---
+
         // 2. Colorear bloques de código
         document.querySelectorAll('pre code').forEach((el) => {
             hljs.highlightElement(el);
         });
 
         // 3. PROCESAR IMÁGENES (Estilo Tarjeta + Click)
+        // Nota: Volvemos a seleccionar las imágenes por si acaso, 
+        // aunque ahora ya tienen la ruta correcta.
         const images = contentContainer.querySelectorAll('img');
         images.forEach(img => {
             // Envolver la imagen en <figure class="image-card">
