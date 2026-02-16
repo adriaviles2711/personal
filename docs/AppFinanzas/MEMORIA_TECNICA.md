@@ -135,34 +135,22 @@ A continuación se muestra el flujo de uso de la aplicación.
 ### 7.1. Dashboard Principal
 El panel de control ofrece una visión rápida del estado financiero del mes actual.
 
-> **[AQUÍ IRÍA LA CAPTURA DEL DASHBOARD]**
-> *Debe mostrarse el Dashboard con:*
-> *1. Balance total en la parte superior.*
-> *2. Gráfico de gastos vs ingresos.*
-> *3. Lista de últimas transacciones.*
-> *4. Barra de navegación lateral/inferior.*
+![Dashboard Principal](./imagenes/dashboard.png)
 
 **Funcionamiento:** Los datos se calculan en tiempo real sumando las transacciones almacenadas localmente en Dexie.js.
 
 ### 7.2. Gestión de Transacciones
 Permite registrar nuevos movimientos. Soporta adjuntar imágenes de recibos/facturas.
 
-> **[AQUÍ IRÍA LA CAPTURA DE NUEVA TRANSACCIÓN]**
-> *Debe mostrarse el formulario de "Nueva Transacción" con:*
-> *1. Campo de monto grande y claro.*
-> *2. Selector de categoría con iconos.*
-> *3. Selector de fecha.*
-> *4. Botón para subir archivo.*
+![Transacción](./imagenes/transaccion.png)
 
 **Detalle Técnico:** La imagen se sube a Supabase Storage inmediatamente si hay internet. Si no, la transacción se guarda sin imagen o se pone en cola (dependiendo de la lógica de red), garantizando que no se pierda el apunte contable.
 
 ### 7.3. Presupuestos y Metas
 El usuario puede definir límites de gasto por categoría y objetivos de ahorro.
 
-> **[AQUÍ IRÍA LA CAPTURA DE PRESUPUESTOS]**
-> *Debe mostrarse la vista de Presupuestos:*
-> *1. Barras de progreso mostrando lo gastado vs lo presupuestado.*
-> *2. Indicadores de color (Verde = Bien, Rojo = Excedido).*
+![Presupuestos](./imagenes/presupuesto.png)
+![Metas](./imagenes/metas.png)
 
 ---
 
